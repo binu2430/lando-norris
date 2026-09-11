@@ -23,33 +23,30 @@ const imgRacing = new Image();
 imgCasual.src = '/lando-casual.png';
 imgRacing.src = '/lando-racing.png';
 
-// Interactive Physics Motion Vector Variables
 let mouse = { x: 0, y: 0 };
 let targetMouse = { x: 0, y: 0 };
-let maskRadius = { value: 0 };       // Linearly animated upwards via master timeline
-let canvasScale = { value: 0.85 };    // Handles elastic entry scaling transitions
-let contentOpacity = { value: 0 };    // Controls graphic fade states on reveal
+let maskRadius = { value: 0 };       
+let canvasScale = { value: 0.85 };    
+let contentOpacity = { value: 0 };    
 
 let assetsLoaded = 0;
 function checkAssets() {
   assetsLoaded++;
   if (assetsLoaded === 2) {
     resizeCanvas();
-    renderLoop();                     // Fire up graphics frame buffer updates
-    executeMasterTransitionTimeline(); // Safely dismiss loader screen overlay panel
+    renderLoop();                     
+    executeMasterTransitionTimeline(); 
   }
 }
 imgCasual.onload = checkAssets;
 imgRacing.onload = checkAssets;
 
-// Monitor mouse coordinate vector coordinates across window viewport
 window.addEventListener('mousemove', (e) => {
   const rect = canvas.getBoundingClientRect();
   targetMouse.x = e.clientX - rect.left;
   targetMouse.y = e.clientY - rect.top;
 });
 
-// Linear Interpolation Physics Momentum Delay Tracker
 const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
 function resizeCanvas() {
@@ -70,36 +67,24 @@ function resizeCanvas() {
 }
 window.addEventListener('resize', resizeCanvas);
 
-// 3. MASTER PRELOADER SLIDE-OUT & HERO ENTRANCE SEQUENCE TIMELINE
+// 3. MASTER PRELOADER & HERO CINEMATIC ENTRANCE TIMELINE
 function executeMasterTransitionTimeline() {
   const masterTimeline = gsap.timeline();
 
-  // Step A: Lift the full-screen neon background mask layer upward
   masterTimeline.to('#site-preloader', {
     y: '-100%',
     duration: 1.1,
     ease: 'power4.inOut',
-    delay: 1.5, // Keeps the logo breathing loop visible briefly for the user
+    delay: 1.5, 
     onComplete: () => {
-      document.getElementById('site-preloader').style.display = 'none'; // Clear from rendering tree
+      document.getElementById('site-preloader').style.display = 'none'; 
     }
   });
 
-  // Step B: Drop navigation clusters down into view space
-  masterTimeline.from('.left-brand-group', { 
-    y: -40, 
-    opacity: 0, 
-    duration: 0.9, 
-    ease: 'power4.out' 
-  }, '-=0.5')
-  .from('.right-nav-group', { 
-    y: -40, 
-    opacity: 0, 
-    duration: 0.9, 
-    ease: 'power4.out' 
-  }, '-=0.9');
+  masterTimeline.from('.nav-left-brand', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.5')
+  .from('.nav-center-emblem', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.9')
+  .from('.nav-right-actions', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.9');
 
-  // Step C: Clip text blocks upwards from baseline positions
   masterTimeline.from('.giant-text', {
     y: '100%',
     duration: 1.2,
@@ -107,7 +92,6 @@ function executeMasterTransitionTimeline() {
     ease: 'power4.out'
   }, '-=0.7');
 
-  // Step D: Elastically expand and fade canvas layers into active display coordinates
   masterTimeline.to(contentOpacity, {
     value: 1,
     duration: 0.8,
@@ -119,12 +103,12 @@ function executeMasterTransitionTimeline() {
     ease: 'elastic.out(1, 0.85)'
   }, '-=1');
 
-  // Step E: Pop open the dynamic brush-portal circle mask ring radius
   masterTimeline.to(maskRadius, {
     value: 160,
     duration: 1.2,
     ease: 'power3.out'
-  }, '-=0.6');
+  }, '-=0.6')
+  .from('.race-details-badge', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4');
 }
 
 // 4. FRAME RENDERING EXECUTION CYCLE
@@ -134,29 +118,25 @@ function renderLoop() {
 
   ctx.clearRect(0, 0, w, h);
 
-  // Set up 1:1 square bounding dimensions relative to viewport sizes
   let rawSide = Math.min(w, h) * 0.85; 
   let sideLength = rawSide * canvasScale.value;
 
   const renderX = (w - sideLength) / 2;
   const renderY = (h - sideLength) / 2;
 
-  // Track position smoothing inertia delay steps
   mouse.x = lerp(mouse.x, targetMouse.x, 0.07);
   mouse.y = lerp(mouse.y, targetMouse.y, 0.07);
 
   ctx.globalAlpha = contentOpacity.value;
 
-  // --- LAYER 1: Render Base Image Layout (Normal Map) ---
   ctx.save();
   ctx.drawImage(imgCasual, renderX, renderY, sideLength, sideLength);
   ctx.restore();
 
-  // --- LAYER 2: Render Masked Target Graphic Foreground (Neon Helmet) ---
   ctx.save();
   ctx.beginPath();
   ctx.arc(mouse.x, mouse.y, maskRadius.value, 0, Math.PI * 2, false);
-  ctx.clip(); // Restrict canvas clipping calculations strictly to circle dimensions
+  ctx.clip(); 
   
   ctx.drawImage(imgRacing, renderX, renderY, sideLength, sideLength);
   ctx.restore();
