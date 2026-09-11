@@ -1,63 +1,200 @@
 :root {
-  --color-bg: #ffffff;        /* CHANGED: Swapped from pure black to crisp white */
-  --color-text: #0b0b0c;      /* CHANGED: Turned standard texts dark */
-  --color-vibrant: #4aff00;   /* Signature Racing Neon Lime Green stays loud */
-  --font-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-bg: #ffffff;
+  --color-dark: #000000;
+  --color-vibrant: #4aff00; /* Signature fluorescent racing trim */
+  --font-global: 'Space Grotesk', system-ui, -apple-system, sans-serif;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 html, body {
   background-color: var(--color-bg);
-  font-family: var(--font-primary);
-  color: var(--color-text);
+  font-family: var(--font-global);
+  color: var(--color-dark);
   overflow-x: hidden;
   width: 100%;
 }
 
-/* Smooth Scrolling fixes */
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis-smooth {
-  scroll-behavior: auto !important;
+/* Smooth Scrolling Layout Anchors */
+html.lenis, html.lenis body { height: auto; }
+.lenis-smooth { scroll-behavior: auto !important; }
+
+/* ----------------------------------------------------
+   OFFICIAL STYLE PRELOADER SCREEN OVERLAY
+   ---------------------------------------------------- */
+#site-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #d2ff00; /* Exact official bright neon fluorescent yellow */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Keeps top logo and footer text neatly split */
+  align-items: center;
+  padding: 80px 0;
+  z-index: 9999; /* Maintain absolute stacking hierarchy above standard content items */
+  overflow: hidden;
 }
 
-/* Navbar Navigation Layout */
+.loader-center-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pulsing-logo-symbol {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  /* Triggers deep velocity breathing animation pulse rules */
+  animation: logo-f1-pulse 1.5s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+}
+
+.loader-bottom-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-label {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #000000; /* Rich pure black typography layout over yellow backdrop */
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+@keyframes logo-f1-pulse {
+  0% {
+    transform: scale(0.9) rotate(-3deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.1) rotate(3deg);
+    opacity: 1;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+  }
+}
+
+/* ----------------------------------------------------
+   NAVIGATION OVERLAY DATA PANELS
+   ---------------------------------------------------- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 30px 5%;
+  padding: 40px 4%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   z-index: 100;
+  pointer-events: none; /* Keeps background canvas sections clickable behind text elements */
 }
+
+.left-brand-group, .right-nav-group {
+  pointer-events: auto;
+}
+
+.left-brand-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .navbar .logo {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 900;
-  letter-spacing: -1px;
+  letter-spacing: -0.03em;
 }
 .navbar .vibrant {
   color: var(--color-vibrant);
-}
-.navbar .menu-btn {
-  background: #0b0b0c;        /* CHANGED: Button container flipped to high contrast black */
-  color: #ffffff;             /* CHANGED: Inverted typography label inside button to white */
-  padding: 8px 20px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
+  background: var(--color-dark);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
-/* Fullscreen Hero Container Layout */
+.hero-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.meta-item span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #88888b;
+  letter-spacing: 0.1em;
+}
+.meta-item p {
+  font-size: 0.85rem;
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+.right-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.store-link {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--color-dark);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+.store-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-dark);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.store-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.menu-btn {
+  background: var(--color-dark);
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-family: var(--font-global);
+  font-size: 0.8rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-vibrant);
+  border-radius: 50%;
+}
+
+/* ----------------------------------------------------
+   HERO DISPLAY ARENA SECTIONS
+   ---------------------------------------------------- */
 .hero-section {
   position: relative;
   width: 100%;
@@ -75,21 +212,21 @@ html.lenis, html.lenis body {
   width: 100%;
   height: 100%;
   background-image: url('/bg-grid.svg');
-  background-size: 60px 60px;
-  opacity: 0.06;              /* Softened tracking line presentation opacity over white */
+  background-size: 50px 50px;
+  opacity: 0.05;
   z-index: 1;
 }
 
-/* Layered Typography Controls */
-.background-text-wrapper, 
-.foreground-text-wrapper {
+.text-layer {
   position: absolute;
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
   user-select: none;
+  overflow: hidden; /* Secures structural margins from text overflow leakage */
 }
 
 .background-text-wrapper { z-index: 2; }
@@ -97,7 +234,7 @@ html.lenis, html.lenis body {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 3; 
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,79 +242,51 @@ html.lenis, html.lenis body {
 .foreground-text-wrapper { z-index: 4; }
 
 .giant-text {
-  font-size: 18vw;
-  font-weight: 950;
-  letter-spacing: -0.04em;
+  font-size: 21vw;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
   text-transform: uppercase;
 }
 
 .text-stroke {
   color: transparent;
-  -webkit-text-stroke: 2px rgba(11, 11, 12, 0.15); /* CHANGED: Stroke trace uses transparent dark layout ink */
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.08);
 }
 
 .text-filled {
-  color: #0b0b0c;             /* CHANGED: Made foreground text ink matching the original dark layout */
-  mix-blend-mode: normal;     /* Clean overlay rendering configuration */
+  color: var(--color-dark);
 }
 
-/* Interactive Component Canvas Bounds */
 #hero-reveal-canvas {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  cursor: none;
 }
 
-/* Hero Status Footer */
-.hero-footer {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  width: 100%;
-  padding: 0 5%;
-  display: flex;
-  justify-content: space-between;
-  z-index: 10;
-  pointer-events: none;
-}
-.footer-item span {
-  font-size: 0.7rem;
-  color: #999;
-  letter-spacing: 2px;
-}
-.footer-item p {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-top: 4px;
-}
-
-/* Scrolling Spacer Content Section */
 .spacer-section {
   width: 100%;
   height: 100vh;
-  background-color: #f7f7f9;  /* CHANGED: Upgraded scroll zone context spacer layout to warm white */
+  background-color: #f8f8fa;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .spacer-section h2 {
-  font-size: 3rem;
-  letter-spacing: 4px;
-  color: rgba(0,0,0,0.1);    /* CHANGED: Dark typography indicator accent overlay */
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #dddddf;
 }
 
-/* Responsive Structural Breakdown Adaptations */
+/* ----------------------------------------------------
+   RESPONSIVE DESIGN BREAKPOINTS
+   ---------------------------------------------------- */
 @media (max-width: 1024px) {
-  .giant-text { font-size: 22vw; }
-}
-
-@media (max-width: 768px) {
   .giant-text { font-size: 24vw; }
+}
+@media (max-width: 768px) {
+  .giant-text { font-size: 26vw; }
   .navbar { padding: 20px; }
-  .hero-footer {
-    flex-direction: column;
-    gap: 15px;
-    bottom: 20px;
-  }
+  .pulsing-logo-symbol { width: 100px; }
+  .loading-label { font-size: 0.85rem; }
 }

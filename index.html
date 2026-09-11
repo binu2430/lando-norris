@@ -3,45 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lando Norris Hero Concept</title>
+  <title>Lando Norris - Official Hero Experience</title>
+  <!-- Google Fonts import for identical modern condensed typography styling -->
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-  <!-- Smooth Scroll Container Wrapper -->
+  <!-- Full Screen Fluorescent Preloader Layer Overlay -->
+  <div id="site-preloader">
+    <div class="loader-center-container">
+      <img src="/loader-logo.png" alt="LN Logo" class="pulsing-logo-symbol">
+    </div>
+    <div class="loader-bottom-footer">
+      <p class="loading-label">LOADING NORRIS</p>
+    </div>
+  </div>
+
+  <!-- Smooth Scroll Area Container Wrapper -->
   <main id="scroll-content">
     
-    <!-- Navigation Overlay -->
-    <nav class="navbar">
-      <div class="logo">LN<span class="vibrant">04</span></div>
-      <div class="menu-btn">MENU</div>
-    </nav>
+    <!-- Unified Top Navigation Overlay Header -->
+    <header class="navbar">
+      
+      <div class="left-brand-group">
+        <div class="logo">LANDO <span class="vibrant">NORRIS</span></div>
+        <div class="hero-metadata">
+          <div class="meta-item"><span>TEAM</span><p>MCLAREN F1</p></div>
+          <div class="meta-item"><span>STATUS</span><p>ON TRACK</p></div>
+        </div>
+      </div>
 
-    <!-- Fullscreen Interactive Hero Section -->
+      <!-- Right Cluster: Action Buttons Utilities Link Items -->
+      <div class="right-nav-group">
+        <a href="#" class="store-link">STORE</a>
+        <button class="menu-btn">
+          <span class="menu-dot"></span>
+          MENU
+        </button>
+      </div>
+    </header>
+
+    <!-- Fullscreen Interactive Hero Section Arena -->
     <section class="hero-section">
       
-      <!-- Background Visuals -->
+      <!-- Linear Background Grid Coordinates Trace Line Layer -->
       <div class="hero-bg"></div>
 
-      <!-- Giant Typography Layered Under Foreground -->
-      <div class="background-text-wrapper">
+      <!-- LAYER 1: Giant Background Silhouette Typography -->
+      <div class="background-text-wrapper text-layer">
         <h1 class="giant-text text-stroke">NORRIS</h1>
       </div>
 
-      <!-- Interactive Composite Canvas Wrapper -->
+      <!-- LAYER 2: Interactive Double-Texture Composite Portal Workframe -->
       <div class="interactive-canvas-container">
         <canvas id="hero-reveal-canvas"></canvas>
       </div>
 
-      <!-- Foreground Typography Overlapping Images -->
-      <div class="foreground-text-wrapper">
+      <!-- LAYER 3: Foreground Absolute Solid Rich Typography Layer -->
+      <div class="foreground-text-wrapper text-layer">
         <h1 class="giant-text text-filled">NORRIS</h1>
-      </div>
-
-      <!-- Bottom Status Bar details -->
-      <div class="hero-footer">
-        <div class="footer-item"><span>TEAM</span><p>MCLAREN F1</p></div>
-        <div class="footer-item"><span>STATUS</span><p>ON TRACK</p></div>
       </div>
 
     </section>
