@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lando Norris - Official Hero Experience</title>
-  <!-- Google Fonts import for identical modern condensed typography styling -->
+  <title>Lando Norris Official</title>
+  <!-- Google Fonts import for identical multi-style layout look -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-  <!-- Full Screen Fluorescent Preloader Layer Overlay -->
+  <!-- Full Screen Preloader Layer Overlay -->
   <div id="site-preloader">
     <div class="loader-center-container">
-      <img src="/loader-logo.png" alt="LN Logo" class="pulsing-logo-symbol">
+      <img src="/loader-logo.svg" alt="LN Logo" class="pulsing-logo-symbol">
     </div>
     <div class="loader-bottom-footer">
       <p class="loading-label">LOADING NORRIS</p>
@@ -25,51 +25,73 @@
   <!-- Smooth Scroll Area Container Wrapper -->
   <main id="scroll-content">
     
-    <!-- Unified Top Navigation Overlay Header -->
+    <!-- High-Fidelity Upgraded Header Overlay Navigation -->
     <header class="navbar">
       
-      <div class="left-brand-group">
-        <div class="logo">LANDO <span class="vibrant">NORRIS</span></div>
-        <div class="hero-metadata">
-          <div class="meta-item"><span>TEAM</span><p>MCLAREN F1</p></div>
-          <div class="meta-item"><span>STATUS</span><p>ON TRACK</p></div>
-        </div>
+      <!-- Left: Stacked Multi-Line Serif Logo Layout Group -->
+      <div class="nav-left-brand">
+        <a href="#" class="brand-stacked-logo">
+          <span>LANDO</span>
+          <span>NORRIS</span>
+        </a>
       </div>
 
-      <!-- Right Cluster: Action Buttons Utilities Link Items -->
-      <div class="right-nav-group">
-        <a href="#" class="store-link">STORE</a>
-        <button class="menu-btn">
-          <span class="menu-dot"></span>
-          MENU
+      
+      <div class="nav-center-emblem">
+        
+      </div>
+
+      <!-- Right: Fluorescent Store Capsule + Rounded Box Menu Toggle -->
+      <div class="nav-right-actions">
+        <!-- Neon Store Action Pill -->
+        <a href="#" class="neon-store-button">
+          <svg class="shopping-bag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          STORE
+        </a>
+        
+        <!-- Minimal Box Hamburg Toggle Button -->
+        <button class="minimal-box-menu" aria-label="Open Navigation Menu">
+          <span class="burger-bar bar-top"></span>
+          <span class="burger-bar bar-mid"></span>
+          <span class="burger-bar bar-bot"></span>
         </button>
       </div>
+
     </header>
 
-    <!-- Fullscreen Interactive Hero Section Arena -->
+    <!-- Fullscreen Interactive Hero Section Arena Area -->
     <section class="hero-section">
-      
-      <!-- Linear Background Grid Coordinates Trace Line Layer -->
       <div class="hero-bg"></div>
 
-      <!-- LAYER 1: Giant Background Silhouette Typography -->
       <div class="background-text-wrapper text-layer">
         <h1 class="giant-text text-stroke">NORRIS</h1>
       </div>
 
-      <!-- LAYER 2: Interactive Double-Texture Composite Portal Workframe -->
       <div class="interactive-canvas-container">
         <canvas id="hero-reveal-canvas"></canvas>
       </div>
 
-      <!-- LAYER 3: Foreground Absolute Solid Rich Typography Layer -->
       <div class="foreground-text-wrapper text-layer">
         <h1 class="giant-text text-filled">NORRIS</h1>
       </div>
 
+      <!-- Left Sidebar Race Details Panel Badge (Matching lower-left corner) -->
+      <div class="race-details-badge">
+        <span class="badge-label">NEXT RACE</span>
+        <div class="badge-box">
+          <p class="race-title">MADRINA GP</p>
+          <div class="helmet-trophy-icon">🏁</div>
+          <p class="sub-label">MCLAREN F1<br>SINCE 2019</p>
+        </div>
+      </div>
+
     </section>
 
-    <!-- Content Spacer Section to test Lenis Smooth Scrolling -->
+    <!-- Bottom Page Context Content Section Block -->
     <section class="spacer-section">
       <h2>SCROLL TO DISCOVER MORE</h2>
     </section>
