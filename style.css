@@ -1,6 +1,7 @@
 :root {
-  --color-bg: #0b0b0c;
-  --color-vibrant: #4aff00; /* Signature Racing Neon Lime Green */
+  --color-bg: #ffffff;        /* CHANGED: Swapped from pure black to crisp white */
+  --color-text: #0b0b0c;      /* CHANGED: Turned standard texts dark */
+  --color-vibrant: #4aff00;   /* Signature Racing Neon Lime Green stays loud */
   --font-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -13,7 +14,7 @@
 html, body {
   background-color: var(--color-bg);
   font-family: var(--font-primary);
-  color: #ffffff;
+  color: var(--color-text);
   overflow-x: hidden;
   width: 100%;
 }
@@ -47,8 +48,8 @@ html.lenis, html.lenis body {
   color: var(--color-vibrant);
 }
 .navbar .menu-btn {
-  background: #ffffff;
-  color: #000;
+  background: #0b0b0c;        /* CHANGED: Button container flipped to high contrast black */
+  color: #ffffff;             /* CHANGED: Inverted typography label inside button to white */
   padding: 8px 20px;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -75,7 +76,7 @@ html.lenis, html.lenis body {
   height: 100%;
   background-image: url('/bg-grid.svg');
   background-size: 60px 60px;
-  opacity: 0.15;
+  opacity: 0.06;              /* Softened tracking line presentation opacity over white */
   z-index: 1;
 }
 
@@ -112,14 +113,12 @@ html.lenis, html.lenis body {
 
 .text-stroke {
   color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
+  -webkit-text-stroke: 2px rgba(11, 11, 12, 0.15); /* CHANGED: Stroke trace uses transparent dark layout ink */
 }
 
 .text-filled {
-  color: var(--color-vibrant);
-  /* Use mix-blend-mode to only clip with character bounds where overlap occurs */
-  mix-blend-mode: overlay;
-  opacity: 0.9;
+  color: #0b0b0c;             /* CHANGED: Made foreground text ink matching the original dark layout */
+  mix-blend-mode: normal;     /* Clean overlay rendering configuration */
 }
 
 /* Interactive Component Canvas Bounds */
@@ -144,7 +143,7 @@ html.lenis, html.lenis body {
 }
 .footer-item span {
   font-size: 0.7rem;
-  color: #666;
+  color: #999;
   letter-spacing: 2px;
 }
 .footer-item p {
@@ -157,7 +156,7 @@ html.lenis, html.lenis body {
 .spacer-section {
   width: 100%;
   height: 100vh;
-  background-color: #121214;
+  background-color: #f7f7f9;  /* CHANGED: Upgraded scroll zone context spacer layout to warm white */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,7 +164,7 @@ html.lenis, html.lenis body {
 .spacer-section h2 {
   font-size: 3rem;
   letter-spacing: 4px;
-  color: rgba(255,255,255,0.1);
+  color: rgba(0,0,0,0.1);    /* CHANGED: Dark typography indicator accent overlay */
 }
 
 /* Responsive Structural Breakdown Adaptations */

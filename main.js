@@ -91,37 +91,50 @@ function animateEntrance() {
 }
 
 // 4. Frame Rendering Execution Cycle
-// 4. Frame Rendering Execution Cycle (Optimized for Square Aspect Ratios)
+// 4. Frame Rendering Execution Cycle (With Automatic Background Box Masking)
 function renderLoop() {
   const w = canvas.width / (window.devicePixelRatio || 1);
   const h = canvas.height / (window.devicePixelRatio || 1);
 
-  // Clear Frame Buffer
+  // Clear Frame Buffer cleanly
   ctx.clearRect(0, 0, w, h);
 
-  // FORCE A PERFECT 1:1 SQUARE ASPECT BOX WITHIN VIEWPORT
-  const sideLength = Math.min(w, h) * 0.9; // Uses 90% of the smallest screen edge
-
+  // Force a perfect 1:1 square box relative to the viewport
+  const sideLength = Math.min(w, h) * 0.9; 
   const renderX = (w - sideLength) / 2;
   const renderY = (h - sideLength) / 2;
 
-  // Frame Interp Calculations (Tracks brush coordinate lagging delay)
+  // Calculate cursor physics interpolation lagging momentum
   mouse.x = lerp(mouse.x, targetMouse.x, 0.08);
   mouse.y = lerp(mouse.y, targetMouse.y, 0.08);
 
-  // --- LAYER 1: Draw Casual Normal Map Layer ---
+  // ----------------------------------------------------
+  // LAYER 1: Render Base Image (Normal Map)
+  // ----------------------------------------------------
   ctx.save();
   ctx.drawImage(imgCasual, renderX, renderY, sideLength, sideLength);
   ctx.restore();
 
-  // --- LAYER 2: Draw Clipped Reveal Racing Helmet Layer ---
+  // ----------------------------------------------------
+  // LAYER 2: Advanced Compound Reveal Portal (Fixes White Square Box)
+  // ----------------------------------------------------
   ctx.save();
+  
+  // Step A: Create an isolated layer container for the portal reveal animation
   ctx.beginPath();
   ctx.arc(mouse.x, mouse.y, maskRadius.value, 0, Math.PI * 2, false);
-  ctx.clip(); // Restricts drawing to the circular cursor zone
-  
+  ctx.clip(); // Restricts drawing visibility strictly within this moving circle
+
+  // Step B: Render the Helmet Image into this portal path
   ctx.drawImage(imgRacing, renderX, renderY, sideLength, sideLength);
+
+  // Step C: Apply a blending technique that treats solid white (#FFFFFF) pixels 
+  // as fully transparent alpha pixels relative to the underlying context layer.
+  ctx.globalCompositeOperation = 'multiply';
+  
   ctx.restore();
 
+  // Force continuous loops
   requestAnimationFrame(renderLoop);
 }
+
