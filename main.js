@@ -1,4 +1,3 @@
-import { gsap } from 'gsap';
 import Lenis from 'lenis';
 
 // 1. Initialize Lenis Smooth Scrolling Engine
