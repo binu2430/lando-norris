@@ -81,27 +81,18 @@ function executeMasterTransitionTimeline() {
     }
   });
 
-  masterTimeline.from('.nav-left-brand', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.5')
-  .from('.nav-center-emblem', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.9')
-  .from('.nav-right-actions', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.9');
-
-  masterTimeline.from('.giant-text', {
-    y: '100%',
-    duration: 1.2,
-    stagger: 0.15,
-    ease: 'power4.out'
-  }, '-=0.7');
+  masterTimeline.from('.navbar', { y: -40, opacity: 0, duration: 0.9, ease: 'power4.out' }, '-=0.5');
 
   masterTimeline.to(contentOpacity, {
     value: 1,
     duration: 0.8,
     ease: 'power2.out'
-  }, '-=1')
+  }, '-=0.5')
   .to(canvasScale, {
     value: 1,
     duration: 1.4,
     ease: 'elastic.out(1, 0.85)'
-  }, '-=1');
+  }, '-=0.5');
 
   masterTimeline.to(maskRadius, {
     value: 160,
